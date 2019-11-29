@@ -207,7 +207,7 @@ variable that comes after me".
 
 ```{r extract-counts-of-girls-born}
 # type your code for the Question 2 here, and Knit
-
+arbuthnot$girls
 ```
 
 Notice that the way R has printed these data is different. When we looked at the
@@ -352,6 +352,8 @@ do you see?
 
 ```{r plot-proportion-of-boys-over-time}
 # type your code for the Exercise here, and Knit
+arbuthnot<- arbuthnot%>%mutate(prop_boy_girl=girls/boys)
+ggplot(data=arbuthnot, aes(x=year,y=prop_boy_girl)) + geom_point() + geom_line()
 
 ```
 
@@ -401,7 +403,7 @@ your workspace.
 
 ```{r variables-in-present}
 # type your code for Question 4 here, and Knit
-
+dim(arbuthnot)
 ```
 
 <div id="exercise">
@@ -411,7 +413,7 @@ function and `present$year` as its argument.
 
 ```{r years-in-present-data}
 # type your code for Exercise here, and Knit
-
+range(present$year)
 ```
 
 5. Calculate the total number of births for each year and store these values in a new 
@@ -427,7 +429,8 @@ decreased over time.
 
 ```{r prop-boys-over-time}
 # type your code for Question 5 here, and Knit
-
+present<- present%>%mutate(prop_boys=boys*100/total )
+ggplot(data=present, aes(x=year,y=prop_boys)) + geom_point() + geom_line()
 ```
 
 
@@ -442,6 +445,8 @@ variable which of the following statements is true?
 
 ```{r more-boys-per-year}
 # type your code for Question 6 here, and Knit
+present<- present%>%mutate(more_boys=boys>girls)
+ggplot(data=present, aes(x=year,y=more_boys)) + geom_point() + geom_line()
 
 ```
 
@@ -457,7 +462,8 @@ variable which of the following statements is true?
 
 ```{r prop-boy-girl-over-time}
 # type your code for Question 7 here, and Knit
-
+present<- present%>%mutate(prop_boy_girl=girls/boys)
+ggplot(data=present, aes(x=year,y=prop_boy_girl)) + geom_point() + geom_line()
 ```
 
 8. In what year did we see the most total number of births in the U.S.? *Hint:* Sort 
